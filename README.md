@@ -57,6 +57,22 @@ There is no promise of “50% less quota.” A smaller model that requires repea
 corrections can be the expensive choice. Use the [measurement protocol](docs/MEASURING.md)
 to compare accepted work, total effort, failures, and human rework.
 
+## An idea of the potential difference
+
+For an **assumed identical workload** of 20k uncached input, 80k cached input,
+and 10k output tokens at Standard speed, the official rates checked on
+2026-09-25 give:
+
+| Model | Calculated credits for those tokens |
+| --- | ---: |
+| GPT-6 Astra | 19.500 |
+| GPT-6 Sol | 3.900 |
+| GPT-6 Luna | 0.195 |
+
+These are credit calculations, **not measured savings, equal-quality results,
+or a conversion to subscription quota**. The model may need different token
+totals to finish the task. See [the source, formula and workload scenarios](docs/MEASURING.md#worked-estimates-what-could-model-selection-change), including a case where retries make the change more expensive.
+
 ## Prefer the terminal?
 
 Python **3.11+** and a compatible Codex client are required. Use `python3` if

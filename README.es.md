@@ -43,6 +43,29 @@ Incluye reintentos, revisión y correcciones en el coste del trabajo. Puede
 recomendar un perfil para la siguiente tarea; no cambia en secreto el modelo
 que ya está ejecutando el turno actual.
 
+## Una idea de la diferencia potencial
+
+Para un **ejemplo de consumo idéntico** de 20.000 tokens de entrada sin caché,
+80.000 de entrada con caché y 10.000 de salida a velocidad Standard, las tarifas
+oficiales consultadas el 25/09/2026 dan:
+
+| Modelo | Créditos calculados para esos tokens |
+| --- | ---: |
+| GPT-6 Astra | 19,500 |
+| GPT-6 Sol | 3,900 |
+| GPT-6 Luna | 0,195 |
+
+Son cálculos de créditos, **no ahorro medido ni una conversión al porcentaje de
+cuota de tu suscripción**. Tampoco suponen que los tres modelos resuelvan igual
+una tarea con esos tokens.
+
+Por ejemplo, diez tareas con Sol costarían 39 créditos bajo esos supuestos.
+Si cinco pudieran resolverse con Luna y cinco con Sol, serían 20,475 créditos:
+un 47,5% menos. Si además hicieran falta dos ejecuciones completas de Astra para
+rescatar resultados fallidos, subirían a 59,475: un 52,5% más que al principio.
+Son escenarios hipotéticos, no un rango de ahorro esperado. Consulta la
+[fuente oficial, fórmula y supuestos](docs/MEASURING.md#worked-estimates-what-could-model-selection-change).
+
 ## Instalación manual
 
 Python **3.11+** y un cliente Codex compatible. Usa `python3` si corresponde.

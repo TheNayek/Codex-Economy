@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Add dated, source-backed credit estimates with explicit token assumptions,
+  workload examples and retry costs; distinguish them from subscription quota
+  and measured savings.
+
 ## 0.1.0 — community preview
 
 - Portable initialization with an explicit target home and ignored local manifest.
