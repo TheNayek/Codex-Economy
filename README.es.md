@@ -6,7 +6,9 @@
 [English](README.md) · [Licencia MIT](LICENSE)
 
 Codex Economy es un kit instalable para quien usa Codex pero no sabe cuándo
-elegir un modelo pequeño, aumentar el razonamiento o delegar. Pásale este
+delegar trabajo acotado, aumentar el razonamiento o ejecutar una tarea completa
+con un modelo pequeño. Un responsable Astra conserva las decisiones mientras
+agentes Luna o Sol resuelven partes definidas. Pásale este
 repositorio a Codex: inspeccionará tu entorno, adaptará los perfiles, aplicará
 la configuración y comprobará el resultado.
 
@@ -16,8 +18,8 @@ la configuración y comprobará el resultado.
 Instala Codex Economy siguiendo
 https://github.com/TheNayek/Codex-Economy/blob/main/INSTALL.md
 
-Inspecciona mi configuración y los modelos disponibles. Adapta QUICK, DEFAULT
-y DEEP a mi cuenta. Conserva mis permisos, integraciones y preferencias
+Inspecciona mi configuración y los modelos disponibles. Adapta DEFAULT, QUICK,
+DEEP, DIRECT y CONTINUITY a mi cuenta. Conserva mis permisos, integraciones y preferencias
 existentes. Aplica y verifica la configuración. Explícame cuándo utilizar
 cada perfil y cómo deshacer la instalación.
 ```
@@ -30,18 +32,22 @@ dependencias de Python.
 
 | Tarea | Punto de partida |
 | --- | --- |
-| Un cambio mecánico, entender una función, un bug pequeño reproducible | **QUICK** |
-| Una funcionalidad con alcance claro, un bug entre varios archivos | **DEFAULT** |
-| Arquitectura ambigua o un fallo diagnosticado del enfoque más pequeño | **DEEP** |
+| Funcionalidad abierta con partes independientes y acotadas | **DEFAULT**: responsable Astra high |
+| Trabajo ligero que requiere criterio de Astra | **QUICK**: Astra medium |
+| Tarea completamente acotada y verificable | **DIRECT**: Luna high |
+| Trabajo complejo de alcance conocido o continuidad útil de Sol | **CONTINUITY**: Sol medium |
+| Necesidad concreta de mayor razonamiento | **DEEP**: Astra xhigh, opcional |
 
-La plantilla propone Luna high, Sol medium y Astra high, respectivamente, en
-nivel estándar. Son puntos de partida: tu agente debe comprobar qué modelos y
+La plantilla propone Astra high como responsable habitual, con agentes Luna para
+trabajo acotado y Sol medium para implementación compleja. Son puntos de partida: tu agente debe comprobar qué modelos y
 esfuerzos admite tu cuenta. No representan un ahorro demostrado.
+DEEP xhigh requiere que el modelo y la cuenta lo admitan; si no, elige un
+esfuerzo compatible en el manifiesto local.
 
 La política instalada también limita contexto y delegación innecesarios.
 Incluye reintentos, revisión y correcciones en el coste del trabajo. Puede
 recomendar un perfil para la siguiente tarea; no cambia en secreto el modelo
-que ya está ejecutando el turno actual.
+que ya está ejecutando el turno actual. Sol high y Astra xhigh requieren un motivo concreto.
 
 ## Una idea de la diferencia potencial
 
@@ -59,11 +65,9 @@ Son cálculos de créditos, **no ahorro medido ni una conversión al porcentaje 
 cuota de tu suscripción**. Tampoco suponen que los tres modelos resuelvan igual
 una tarea con esos tokens.
 
-Por ejemplo, diez tareas con Sol costarían 39 créditos bajo esos supuestos.
-Si cinco pudieran resolverse con Luna y cinco con Sol, serían 20,475 créditos:
-un 47,5% menos. Si además hicieran falta dos ejecuciones completas de Astra para
-rescatar resultados fallidos, subirían a 59,475: un 52,5% más que al principio.
-Son escenarios hipotéticos, no un rango de ahorro esperado. Consulta la
+Un ejemplo con un responsable Astra y agentes Luna o Sol, que incluye revisión
+y coordinación, figura en la guía. Son cálculos hipotéticos, no un rango de
+ahorro esperado. Consulta la
 [fuente oficial, fórmula y supuestos](docs/MEASURING.md#worked-estimates-what-could-model-selection-change).
 
 ## Instalación manual
@@ -100,13 +104,14 @@ python economy.py sync --account main
 python economy.py verify --account main
 ```
 
-Abre una tarea nueva. En CLI: `codex --profile QUICK`, `DEFAULT` o `DEEP`.
+Abre una tarea nueva. En CLI: `codex --profile DEFAULT`, `QUICK`, `DEEP`,
+`DIRECT` o `CONTINUITY`.
 En Desktop selecciona el modelo/esfuerzo correspondiente en el compositor;
 los perfiles CLI no añaden botones a la aplicación.
 
 ## Qué cambia y cómo volver atrás
 
-`sync` administra perfiles, roles, cuatro campos de agentes y el bloque
+`sync` administra cinco perfiles, siete roles, cuatro campos de agentes y el bloque
 marcado de AGENTS.md. Conserva tus preferencias de modelo principal, permisos,
 búsqueda web e integraciones. No copia credenciales. Las colisiones con archivos
 ajenos se rechazan. [Detalles de seguridad](SECURITY.md).

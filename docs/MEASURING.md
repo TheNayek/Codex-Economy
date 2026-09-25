@@ -67,6 +67,25 @@ Use these examples to form a hypothesis, then replace the inputs with observed
 usage across the owner, subagents, review and retries. Do not advertise these
 percentages as "Codex Economy saves X% of your quota."
 
+The bundled workflow has an Astra owner delegating bounded pieces. Here is one
+**hypothetical** Standard-speed credit calculation that counts the owner twice,
+for planning and for review. Token quantities are assumptions, not observed
+usage or a claim that the delegated output meets acceptance criteria.
+
+| Activity | Uncached input | Cached input | Output | Calculated credits |
+| --- | ---: | ---: | ---: | ---: |
+| Astra owner planning | 10,000 | 40,000 | 4,000 | 8.5000 |
+| Luna bounded worker | 5,000 | 20,000 | 2,000 | 0.0425 |
+| Sol known-scope worker | 10,000 | 30,000 | 4,000 | 1.6500 |
+| Astra owner integration and review | 2,000 | 8,000 | 1,000 | 1.9500 |
+| **Total** | **27,000** | **98,000** | **11,000** | **12.1425** |
+
+For arithmetic comparison only, running the same aggregate tokens on Astra
+would calculate to 22.9500 credits. Real delegation changes context, output,
+retries, latency, and quality. These credits are **not subscription quota**;
+neither total establishes measured savings. Failed child work and further
+owner review would add to the total.
+
 ## A small comparison you can reproduce
 
 1. Pick representative tasks with fixed inputs and explicit acceptance checks:

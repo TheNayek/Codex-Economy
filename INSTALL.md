@@ -7,7 +7,7 @@ the effective runtime permissions. Do not execute live smoke tests by default.
 
 ## Outcome
 
-Deliver a working, verified configuration for one chosen Codex home, with three
+Deliver a working, verified configuration for one chosen Codex home, with five
 task-oriented profiles, bounded agent roles, preserved unrelated preferences,
 and an exact rollback command. Installation does not switch an already running
 model or prove savings.
@@ -38,12 +38,13 @@ python economy.py self-test
 
 ## 2. Adapt to the account
 
-Choose a light model for bounded work, a balanced owner for most implementation,
-and a more capable model for ambiguity or a diagnosed need to escalate. They
+Choose a light model for direct bounded work and Luna roles, a balanced model
+for Sol continuity and workers, and a frontier model for owner decisions. They
 may be the same model at different supported effort levels if that fits the
 available account. Avoid maximal reasoning and premium speed by default.
 
-Bundled examples: QUICK = Luna high, DEFAULT = Sol medium, DEEP = Astra high.
+Bundled examples: DEFAULT = Astra high, QUICK = Astra medium,
+DEEP = Astra xhigh (opt-in), DIRECT = Luna high, CONTINUITY = Sol medium.
 These are presets to evaluate, not a guaranteed optimum.
 
 Initialize a local manifest with confirmed choices. Replace the uppercase
@@ -53,11 +54,18 @@ placeholders with actual values; never pass placeholders literally:
 python economy.py init --home ABSOLUTE_HOME --account main --light-model LIGHT_MODEL --light-effort LIGHT_EFFORT --balanced-model BALANCED_MODEL --balanced-effort BALANCED_EFFORT --deep-model DEEP_MODEL --deep-effort DEEP_EFFORT
 ```
 
-All three model IDs must be supplied together. Custom choices propagate to
-roles at their tier's effort, including the implementer role. Review the generated
-local manifest, especially those efforts. Init refuses an existing local file;
+All three model IDs must be supplied together. Light maps to DIRECT and Luna
+roles, balanced to CONTINUITY and Sol workers, and deep to the three Astra owner
+routes. With deep effort xhigh, DEFAULT remains high and QUICK medium; DEEP alone
+uses xhigh. Confirm that each model supports every resulting effort, including
+Sol high if using sol-worker-high. Review the generated local manifest, especially
+the role efforts. Init refuses an existing local file;
 for an existing install, inspect and deliberately edit that file instead of
-deleting it or using a force overwrite.
+deleting it or using a force overwrite. Updating the public template never
+silently replaces existing local choices; compare and merge intentionally.
+When migrating a prior six-role install, the new manifest retires the old
+implementer role only if its file still matches the installer's ownership
+snapshot. An edited or unowned role is reported as a collision for review.
 
 The standard public preset has empty runtime_defaults and does not manage
 Windows sandbox mode or web search. Preserve this setting. Do not change
@@ -75,7 +83,7 @@ Doctor does not start Codex and reports model availability as not_checked.
 Your separate catalog/account check supplies that evidence. Plan reports changed
 paths, collisions and pending transactions; it does not print raw configuration.
 
-Explain the concrete scope: three profiles, six roles, four agent defaults,
+Explain the concrete scope: five profiles, seven roles, four agent defaults,
 and a marked AGENTS.md block. Under an existing instruction to install, apply
 the reviewed plan without another redundant permission question. Respect any
 actual sandbox approval boundary or ambiguity about the target.
@@ -101,7 +109,7 @@ python economy.py verify --account main --include-defaults
 ## 4. Handoff
 
 Tell the user:
-- Which confirmed models/efforts back QUICK, DEFAULT and DEEP, and when to use each.
+- Which confirmed models/efforts back all five routes, and when to use each.
 - Which files changed and whether root preferences were preserved.
 - The completed checks and remaining runtime uncertainty.
 - To open a new task to reload roles. In CLI use codex --profile NAME; in Desktop

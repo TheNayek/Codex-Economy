@@ -16,9 +16,19 @@ empty in the distributed template. They are not necessary for quota management.
 ## Choosing models
 
 Confirm available models and supported efforts before installation. Custom
-init choices set all roles in the light tier to the chosen light effort, and
-implementer to the balanced effort. The bundled template separately uses medium
-for tester/mechanical. Inspect manifest.local.json for the actual values.
+init choices map light to DIRECT and Luna roles, balanced to CONTINUITY and
+Sol workers, and deep to the Astra owner routes. QUICK uses medium and DEFAULT
+high when deep effort is xhigh; only DEEP receives xhigh. Other custom effort
+choices propagate to routes and roles at their tier, except optional
+sol-worker-high remains high. The bundled template uses medium for
+tester/mechanical. Inspect manifest.local.json for the actual values and confirm
+all resulting model/effort pairs, including xhigh and Sol high, are supported.
+Existing manifest.local.json choices are never overwritten by init or silently
+merged from a new public template. Compare and edit local choices deliberately.
+The new public manifest retires the previous implementer agent file only when
+it carries the Economy marker and matches the latest ownership snapshot;
+otherwise migration stops with a collision. New roles are not silently merged
+into an existing local manifest.
 
 Codex role files can take precedence over explicit spawn arguments. Start new
 tasks after updates. Read-only role instructions do not establish filesystem

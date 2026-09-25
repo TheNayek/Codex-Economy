@@ -3,19 +3,29 @@
   "policy_file": "policy.md",
   "profiles": {},
   "routing": {
-    "QUICK": {
-      "model": "gpt-6-luna",
+    "DEFAULT": {
+      "model": "gpt-6-astra",
       "model_reasoning_effort": "high",
       "service_tier": "default"
     },
-    "DEFAULT": {
-      "model": "gpt-6-sol",
+    "QUICK": {
+      "model": "gpt-6-astra",
       "model_reasoning_effort": "medium",
       "service_tier": "default"
     },
     "DEEP": {
       "model": "gpt-6-astra",
+      "model_reasoning_effort": "xhigh",
+      "service_tier": "default"
+    },
+    "DIRECT": {
+      "model": "gpt-6-luna",
       "model_reasoning_effort": "high",
+      "service_tier": "default"
+    },
+    "CONTINUITY": {
+      "model": "gpt-6-sol",
+      "model_reasoning_effort": "medium",
       "service_tier": "default"
     }
   },
@@ -57,10 +67,17 @@
       "developer_instructions": "Perform only the mechanical operations named in the brief. Preserve unrelated data and one-writer ownership. Validate using the stated deterministic checks. Return compact results and escalate ambiguity, architecture changes, or blockers to the task owner.",
       "service_tier": "default"
     },
-    "implementer": {
-      "description": "Implementation worker for complex changes with a known scope.",
+    "sol-worker": {
+      "description": "Implementation worker using the Sol model for a bounded change.",
       "model": "gpt-6-sol",
       "model_reasoning_effort": "medium",
+      "developer_instructions": "Implement only the bounded brief, keep one writer for shared files, return compact evidence, and escalate decisions or blockers to the root agent.",
+      "service_tier": "default"
+    },
+    "sol-worker-high": {
+      "description": "Higher-reasoning Sol implementation worker for a bounded change.",
+      "model": "gpt-6-sol",
+      "model_reasoning_effort": "high",
       "developer_instructions": "Implement only the bounded brief, keep one writer for shared files, return compact evidence, and escalate decisions or blockers to the root agent.",
       "service_tier": "default"
     }
@@ -69,5 +86,8 @@
   "runtime_defaults": {},
   "agent_settings": {
     "max_concurrent_threads_per_session": 3
-  }
+  },
+  "retired_agents": [
+    "implementer"
+  ]
 }

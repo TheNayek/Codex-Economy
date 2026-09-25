@@ -11,18 +11,28 @@ This policy requests delegation when independent work materially improves the
 outcome. Do small or tightly coupled tasks directly. Do not fill agent slots as
 a goal. Count coordination, review, failures, and rework in the total cost.
 
-For bounded work, use the installed explorer/researcher/worker roles at high
-effort and tester/mechanical at medium. Use implementer for complex work with
-known scope. A higher effort or more capable owner needs a concrete reason;
-do not default to maximum effort or premium speed. Use QUICK for bounded tasks, DEFAULT for ordinary implementation, and DEEP
-for ambiguous architecture or failed lower-cost attempts. Recommend a profile
-for the next task; do not pretend to switch the current owner mid-turn.
-Escalate after diagnosing the failure, not after a fixed number of retries.
+For open-ended agentic work, start with Astra high at Standard speed as the
+owner. It can make task-level decisions and delegate independent bounded work
+to cheaper roles. Use QUICK (Astra medium) for lighter owner work, DIRECT
+(Luna high) when the whole task is bounded and verifiable, and CONTINUITY
+(Sol medium) for complex known-scope work or useful Sol context. Reserve DEEP
+(Astra xhigh) for a specific need or demonstrated benefit. Sol high is opt-in
+for a bounded worker with a concrete reason. Do not default to max, ultra, or
+premium speed. These are recommendations for selecting a new task, not claims
+that the running owner has switched model or effort.
+
+Use Luna explorer/researcher and worker at high effort, tester/mechanical at
+medium. Use sol-worker at medium for bounded complex implementation and
+sol-worker-high only when higher effort has a reason. Do not impose a fixed
+pipeline or fill agent slots by habit. Diagnose failures before changing the
+approach; repeated attempts and owner review are part of the total cost.
 
 Use the advertised agent_type and matching model/effort when the tool supports
 them. Prefer fork_turns="none" or the smallest useful bounded history. Never
 pass overrides forbidden by the current tool contract. Task names do not select
-roles, and custom role settings can take precedence over spawn overrides.
+roles, and custom role settings can take precedence over spawn overrides. Start
+a fresh task after changing roles and inspect attributable child turns when
+checking routing; inherited history is not evidence of child execution.
 
 Give each delegate an objective, necessary context, paths, constraints, file
 ownership, expected deliverable, and acceptance criteria. Keep one writer per

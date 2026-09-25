@@ -184,6 +184,14 @@ def _load_manifest(path: Path) -> tuple[dict[str, Any], str]:
         if n not in {"explorer", "researcher"} and "sandbox_mode" in spec: raise EconomyError(f"agent {n} has unapproved sandbox setting")
     if len({n.casefold() for n in agents}) != len(agents): raise EconomyError("agent names collide on a case-insensitive filesystem")
     if "worker" not in agents: raise EconomyError("agents requires worker role")
+    retired_agents = m.get("retired_agents", [])
+    if not isinstance(retired_agents, list): raise EconomyError("retired_agents must be a list")
+    retired_agent_names: set[str] = set()
+    for n in retired_agents:
+        n = _name("retired agent", n)
+        if n.casefold() in retired_agent_names or n.casefold() in {a.casefold() for a in agents}:
+            raise EconomyError(f"invalid retired agent: {n}")
+        retired_agent_names.add(n.casefold())
     # Git and Windows checkouts may represent the same JSON with LF or CRLF.
     # Provenance follows canonical LF text so line-ending normalization does
     # not invalidate an otherwise identical installed manifest.
@@ -232,12 +240,26 @@ def _init_manifest(home: str, account: str, base: Path = SCRIPT_DIR,
                 raise EconomyError("model IDs must be nonempty identifiers, not shell commands")
             if effort not in {"none", "minimal", "low", "medium", "high", "xhigh"}:
                 raise EconomyError("unsupported effort choice")
-        for route, tier in {"QUICK": "light", "DEFAULT": "balanced", "DEEP": "deep"}.items():
-            model, effort = model_choices[tier]
+        light_model, light_effort = model_choices["light"]
+        balanced_model, balanced_effort = model_choices["balanced"]
+        deep_model, deep_effort = model_choices["deep"]
+        # The three custom tiers name model families, while the five routes
+        # retain their distinct owner/direct/continuity purposes. In
+        # particular, opting into DEEP xhigh must not change DEFAULT.
+        route_choices = {
+            "DIRECT": (light_model, light_effort),
+            "CONTINUITY": (balanced_model, balanced_effort),
+            "QUICK": (deep_model, "medium" if deep_effort in {"high", "xhigh"} else deep_effort),
+            "DEFAULT": (deep_model, "high" if deep_effort == "xhigh" else deep_effort),
+            "DEEP": (deep_model, deep_effort),
+        }
+        for route, (model, effort) in route_choices.items():
             manifest["routing"][route].update(model=model, model_reasoning_effort=effort)
         for name, spec in manifest["agents"].items():
-            tier = "balanced" if name == "implementer" else "light"
-            model, effort = model_choices[tier]
+            if name in {"sol-worker", "sol-worker-high"}:
+                model, effort = balanced_model, ("high" if name == "sol-worker-high" else balanced_effort)
+            else:
+                model, effort = light_model, light_effort
             spec.update(model=model, model_reasoning_effort=effort)
     destination = base / "manifest.local.json"
     if os.path.lexists(destination): raise EconomyError(f"local manifest already exists: {destination}")
@@ -558,6 +580,12 @@ def _plan_home(home: Path, m: dict[str, Any], policy: str | None = None, *, incl
         owned = before is None or (_contains_marker(before.decode("utf-8", errors="strict"), AGENT_MARKER_PREFIX + n)
                                    and _latest_snapshot_hash(home, rel) == _sha256_bytes(before))
         files.append(PlannedFile(rel, before, after, "create" if before is None else ("noop" if before == after else ("update" if owned else "collision")), collision=not owned))
+    for n in m.get("retired_agents", []):
+        rel = f"agents/{n}.toml"; before = _read_bytes(_safe_home_path(home, rel))
+        if before is None: files.append(PlannedFile(rel, None, None, "noop")); continue
+        owned = (_contains_marker(before.decode("utf-8", errors="strict"), AGENT_MARKER_PREFIX + n)
+                 and _latest_snapshot_hash(home, rel) == _sha256_bytes(before))
+        files.append(PlannedFile(rel, before, None, "delete" if owned else "collision", collision=not owned))
     return files
 
 

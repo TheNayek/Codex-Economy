@@ -44,12 +44,25 @@ class OnboardingTests(unittest.TestCase):
                    'deep': ('available-large', 'high')}
         target = economy._init_manifest(str(home), 'main', self.root, choices)
         actual, _ = economy._load_manifest(target)
-        self.assertEqual(actual['routing']['QUICK']['model'], 'available-small')
-        self.assertEqual(actual['routing']['DEFAULT']['model'], 'available-mid')
+        self.assertEqual(actual['routing']['QUICK']['model'], 'available-large')
+        self.assertEqual(actual['routing']['QUICK']['model_reasoning_effort'], 'medium')
+        self.assertEqual(actual['routing']['DEFAULT']['model'], 'available-large')
         self.assertEqual(actual['routing']['DEEP']['model'], 'available-large')
+        self.assertEqual(actual['routing']['DIRECT']['model'], 'available-small')
+        self.assertEqual(actual['routing']['CONTINUITY']['model'], 'available-mid')
         self.assertEqual(actual['agents']['worker']['model_reasoning_effort'], 'low')
-        self.assertEqual(actual['agents']['implementer']['model'], 'available-mid')
+        self.assertEqual(actual['agents']['sol-worker']['model'], 'available-mid')
+        self.assertEqual(actual['agents']['sol-worker-high']['model_reasoning_effort'], 'high')
         self.assertFalse(home.exists())
+
+    def test_custom_deep_xhigh_does_not_change_default_owner_effort(self):
+        choices = {'light': ('small', 'high'), 'balanced': ('middle', 'medium'),
+                   'deep': ('frontier', 'xhigh')}
+        actual_path = economy._init_manifest(str(self.root / 'home'), 'main', self.root, choices)
+        actual, _ = economy._load_manifest(actual_path)
+        self.assertEqual(actual['routing']['QUICK']['model_reasoning_effort'], 'medium')
+        self.assertEqual(actual['routing']['DEFAULT']['model_reasoning_effort'], 'high')
+        self.assertEqual(actual['routing']['DEEP']['model_reasoning_effort'], 'xhigh')
 
     def test_partial_or_invalid_custom_models_leave_no_local_manifest(self):
         choices = {'light': ('small', 'low')}

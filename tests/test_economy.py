@@ -426,6 +426,30 @@ class EconomyTests(unittest.TestCase):
             self.install(home)
         self.assertTrue(agent.read_text().endswith("# user edit\n"))
 
+    def test_retired_implementer_removes_only_owned_file_and_rolls_back(self):
+        old = copy.deepcopy(self.manifest)
+        old["agents"]["implementer"] = old["agents"].pop("sol-worker")
+        old["agents"].pop("sol-worker-high")
+        old.pop("retired_agents", None)
+        digest = economy._json_hash(old)
+        home = self.home('[agents]\ncustom=true\n')
+        self.install(home, old, digest)
+        implementer = home / "agents" / "implementer.toml"
+        original = implementer.read_bytes()
+        retired = self.install(home)
+        self.assertIn("agents/implementer.toml", retired["changed"])
+        self.assertFalse(implementer.exists())
+        economy._rollback_home(home, self.digest, retired["transaction"])
+        self.assertEqual(implementer.read_bytes(), original)
+
+        other = self.root / "unowned"; other.mkdir()
+        (other / "config.toml").write_text('[agents]\ncustom=true\n')
+        path = other / "agents" / "implementer.toml"
+        path.parent.mkdir(); path.write_text('user role\n')
+        with self.assertRaisesRegex(economy.EconomyError, "collision"):
+            self.install(other)
+        self.assertEqual(path.read_text(), 'user role\n')
+
     def test_legacy_clean_transaction_rolls_back(self):
         home = self.home(); rel = "DIRECT.config.toml"; before = b'model="old"\n'; after = b'model="new"\n'
         (home / rel).write_bytes(after)
