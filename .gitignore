@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+work/
+*.log
+economy-backups/
+dist/
+manifest.local.json
+.env
+.env.*
+!.env.example
+# Personal runtime artifacts must not enter new public commits.
+evidence/
+smoke-prompts/
+docs/PRIVATE-*
+# Preserve original local incident reports, but do not add them to public source.
+/PERMISSIONS-20260924.md
+/REVIEW-20260922.md
+/UAC-20260924.md
+economy-selftest-*/
+test-*/
+temp-*/

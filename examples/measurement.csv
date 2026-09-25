@@ -1,0 +1,1 @@
+run_id,task_kind,condition,source_commit,codex_version,model,effort,service_tier,accepted,total_seconds,human_rework_minutes,attributable_tokens,quota_before_percent,quota_after_percent,failures,notes

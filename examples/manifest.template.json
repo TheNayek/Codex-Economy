@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "policy_file": "policy.md",
+  "profiles": {},
+  "routing": {
+    "QUICK": {
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "high",
+      "service_tier": "default"
+    },
+    "DEFAULT": {
+      "model": "gpt-6-sol",
+      "model_reasoning_effort": "medium",
+      "service_tier": "default"
+    },
+    "DEEP": {
+      "model": "gpt-6-astra",
+      "model_reasoning_effort": "high",
+      "service_tier": "default"
+    }
+  },
+  "agents": {
+    "explorer": {
+      "description": "Read-only repository explorer that returns compact evidence.",
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "high",
+      "developer_instructions": "Inspect the requested scope without modifying files. Return compact evidence, cite paths and lines when useful, and escalate decisions to the root agent.",
+      "sandbox_mode": "read-only",
+      "service_tier": "default"
+    },
+    "researcher": {
+      "description": "Read-only researcher that gathers focused evidence.",
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "high",
+      "developer_instructions": "Research only within the bounded brief and do not modify files. Return compact evidence with sources or paths and escalate decisions to the root agent.",
+      "sandbox_mode": "read-only",
+      "service_tier": "default"
+    },
+    "tester": {
+      "description": "Focused test runner with tightly bounded test-only edits.",
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "medium",
+      "developer_instructions": "Run the focused checks in the brief. Modify files only when the brief explicitly allows test-only changes; keep evidence compact and escalate decisions to the root agent.",
+      "service_tier": "default"
+    },
+    "worker": {
+      "description": "Implementation worker for a bounded change.",
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "high",
+      "developer_instructions": "Implement only the bounded brief, keep one writer for shared files, return compact evidence, and escalate decisions or blockers to the root agent.",
+      "service_tier": "default"
+    },
+    "mechanical": {
+      "description": "Mechanical operations on explicitly named inputs with deterministic acceptance.",
+      "model": "gpt-6-luna",
+      "model_reasoning_effort": "medium",
+      "developer_instructions": "Perform only the mechanical operations named in the brief. Preserve unrelated data and one-writer ownership. Validate using the stated deterministic checks. Return compact results and escalate ambiguity, architecture changes, or blockers to the task owner.",
+      "service_tier": "default"
+    },
+    "implementer": {
+      "description": "Implementation worker for complex changes with a known scope.",
+      "model": "gpt-6-sol",
+      "model_reasoning_effort": "medium",
+      "developer_instructions": "Implement only the bounded brief, keep one writer for shared files, return compact evidence, and escalate decisions or blockers to the root agent.",
+      "service_tier": "default"
+    }
+  },
+  "retired_profiles": [],
+  "runtime_defaults": {},
+  "agent_settings": {
+    "max_concurrent_threads_per_session": 3
+  }
+}
