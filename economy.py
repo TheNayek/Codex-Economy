@@ -243,14 +243,13 @@ def _init_manifest(home: str, account: str, base: Path = SCRIPT_DIR,
         light_model, light_effort = model_choices["light"]
         balanced_model, balanced_effort = model_choices["balanced"]
         deep_model, deep_effort = model_choices["deep"]
-        # The three custom tiers name model families, while the five routes
-        # retain their distinct owner/direct/continuity purposes. In
-        # particular, opting into DEEP xhigh must not change DEFAULT.
+        # The three custom tiers name model families. DEFAULT uses the
+        # balanced family at high effort; DEEP alone inherits deep effort.
         route_choices = {
             "DIRECT": (light_model, light_effort),
             "CONTINUITY": (balanced_model, balanced_effort),
-            "QUICK": (deep_model, "medium" if deep_effort in {"high", "xhigh"} else deep_effort),
-            "DEFAULT": (deep_model, "high" if deep_effort == "xhigh" else deep_effort),
+            "QUICK": (deep_model, "low"),
+            "DEFAULT": (balanced_model, "high"),
             "DEEP": (deep_model, deep_effort),
         }
         for route, (model, effort) in route_choices.items():

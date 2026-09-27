@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.0 — community preview
+
+- Set DEFAULT to Sol high at Standard speed as a conservative everyday starting
+  choice; set QUICK to Astra low and DEEP to Astra high. Keep DIRECT Luna high,
+  CONTINUITY Sol medium, and the seven existing agent roles.
+- Map custom init's balanced model to DEFAULT at high effort regardless of deep
+  effort; retain the chosen balanced effort for CONTINUITY. Map the deep model
+  to QUICK low and DEEP at the chosen deep effort, including optional xhigh.
+- Update the English/Spanish guidance and installer. Astra medium and xhigh
+  remain manual options for a specific need, without a required failed Sol run.
+  Credit examples remain hypothetical and are not subscription quota.
+
 ## 0.2.0 — community preview
 
 - Add dated, source-backed credit estimates with explicit token assumptions,

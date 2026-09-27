@@ -67,7 +67,9 @@ Use these examples to form a hypothesis, then replace the inputs with observed
 usage across the owner, subagents, review and retries. Do not advertise these
 percentages as "Codex Economy saves X% of your quota."
 
-The bundled workflow has an Astra owner delegating bounded pieces. Here is one
+One optional workflow has an Astra owner delegating bounded pieces. The bundled
+DEFAULT now starts with Sol high; this Astra example illustrates a task whose
+judgment needs warrant a frontier owner. Here is one
 **hypothetical** Standard-speed credit calculation that counts the owner twice,
 for planning and for review. Token quantities are assumptions, not observed
 usage or a claim that the delegated output meets acceptance criteria.
@@ -85,6 +87,11 @@ would calculate to 22.9500 credits. Real delegation changes context, output,
 retries, latency, and quality. These credits are **not subscription quota**;
 neither total establishes measured savings. Failed child work and further
 owner review would add to the total.
+
+This example also shows why owner-heavy work can dominate credits: changing the
+owner model may matter more than lowering only child effort. Lower reasoning
+effort can increase retries or review, so it does not guarantee lower total
+task cost. Measure accepted results across the complete workflow.
 
 ## A small comparison you can reproduce
 

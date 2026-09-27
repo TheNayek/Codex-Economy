@@ -7,8 +7,8 @@
 
 Codex Economy es un kit instalable para quien usa Codex pero no sabe cuándo
 delegar trabajo acotado, aumentar el razonamiento o ejecutar una tarea completa
-con un modelo pequeño. Un responsable Astra conserva las decisiones mientras
-agentes Luna o Sol resuelven partes definidas. Pásale este
+con un modelo pequeño. Un responsable Sol lleva el trabajo cotidiano; agentes
+Luna o Sol resuelven partes definidas cuando conviene delegar. Pásale este
 repositorio a Codex: inspeccionará tu entorno, adaptará los perfiles, aplicará
 la configuración y comprobará el resultado.
 
@@ -32,22 +32,25 @@ dependencias de Python.
 
 | Tarea | Punto de partida |
 | --- | --- |
-| Funcionalidad abierta con partes independientes y acotadas | **DEFAULT**: responsable Astra high |
-| Trabajo ligero que requiere criterio de Astra | **QUICK**: Astra medium |
+| Trabajo cotidiano, incluso funcionalidades abiertas | **DEFAULT**: responsable Sol high a velocidad Standard |
+| Trabajo breve que necesita más criterio global | **QUICK**: Astra low |
 | Tarea completamente acotada y verificable | **DIRECT**: Luna high |
 | Trabajo complejo de alcance conocido o continuidad útil de Sol | **CONTINUITY**: Sol medium |
-| Necesidad concreta de mayor razonamiento | **DEEP**: Astra xhigh, opcional |
+| Decisiones o diagnósticos difíciles o ambiguos | **DEEP**: Astra high cuando haga falta |
 
-La plantilla propone Astra high como responsable habitual, con agentes Luna para
-trabajo acotado y Sol medium para implementación compleja. Son puntos de partida: tu agente debe comprobar qué modelos y
-esfuerzos admite tu cuenta. No representan un ahorro demostrado.
-DEEP xhigh requiere que el modelo y la cuenta lo admitan; si no, elige un
-esfuerzo compatible en el manifiesto local.
+La plantilla propone Sol high como responsable habitual, con agentes Luna para
+trabajo acotado y Sol medium para implementación compleja. Es una elección
+conservadora para la calidad aceptada y el uso total de la cuenta, **no un óptimo
+demostrado ni una garantía de ahorro**. Los esfuerzos iniciales oficiales son
+Sol medium, Luna high y Astra low; DEFAULT usa Sol high deliberadamente. Adapta
+los modelos y esfuerzos a tu cuenta. Astra medium o xhigh son opciones manuales
+para una necesidad concreta; DEEP no requiere un intento previo fallido.
 
 La política instalada también limita contexto y delegación innecesarios.
 Incluye reintentos, revisión y correcciones en el coste del trabajo. Puede
 recomendar un perfil para la siguiente tarea; no cambia en secreto el modelo
-que ya está ejecutando el turno actual. Sol high y Astra xhigh requieren un motivo concreto.
+que ya está ejecutando el turno actual. Astra medium o xhigh usados
+manualmente requieren un motivo concreto.
 
 ## Una idea de la diferencia potencial
 

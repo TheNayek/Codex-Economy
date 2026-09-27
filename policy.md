@@ -11,15 +11,19 @@ This policy requests delegation when independent work materially improves the
 outcome. Do small or tightly coupled tasks directly. Do not fill agent slots as
 a goal. Count coordination, review, failures, and rework in the total cost.
 
-For open-ended agentic work, start with Astra high at Standard speed as the
-owner. It can make task-level decisions and delegate independent bounded work
-to cheaper roles. Use QUICK (Astra medium) for lighter owner work, DIRECT
-(Luna high) when the whole task is bounded and verifiable, and CONTINUITY
-(Sol medium) for complex known-scope work or useful Sol context. Reserve DEEP
-(Astra xhigh) for a specific need or demonstrated benefit. Sol high is opt-in
-for a bounded worker with a concrete reason. Do not default to max, ultra, or
-premium speed. These are recommendations for selecting a new task, not claims
-that the running owner has switched model or effort.
+For everyday agentic work, start with Sol high at Standard speed as DEFAULT.
+This is a conservative starting choice for accepted quality and total account
+usage, not a measured optimum. Use CONTINUITY (Sol medium) for known-scope work
+or useful ongoing context, and DIRECT (Luna high) for a complete bounded,
+verifiable task. Use QUICK (Astra low) for brief work that specifically needs
+stronger task-level judgment, and DEEP (Astra high) for difficult or ambiguous
+decisions, diagnosis, or a failed Sol approach with evidence that greater
+capability is needed. Go directly to Astra when the task warrants it; a failed
+cheaper attempt is not required. Astra medium or xhigh are manual options for
+a specific need. Do not default to max, ultra, or premium speed. These are
+recommendations for selecting a new task, not claims that the running owner
+has switched model or effort. Official starting efforts are Sol medium, Luna
+high, and Astra low; DEFAULT's Sol high is a deliberate, unproven adjustment.
 
 Use Luna explorer/researcher and worker at high effort, tester/mechanical at
 medium. Use sol-worker at medium for bounded complex implementation and

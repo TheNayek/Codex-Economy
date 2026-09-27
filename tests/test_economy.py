@@ -111,7 +111,7 @@ class EconomyTests(unittest.TestCase):
         self.assertEqual(metadata_path.read_bytes(), metadata_before)
 
         changed = copy.deepcopy(renamed)
-        changed["routing"]["QUICK"]["model_reasoning_effort"] = "low"
+        changed["routing"]["QUICK"]["model_reasoning_effort"] = "medium"
         changed_text = json.dumps(changed, indent=2) + "\n"
         changed_digest = economy._sha256_bytes(changed_text.encode("utf-8"))
         rejected = economy._verify_home(home, changed, changed_digest, self.policy)

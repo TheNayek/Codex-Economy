@@ -16,13 +16,17 @@ empty in the distributed template. They are not necessary for quota management.
 ## Choosing models
 
 Confirm available models and supported efforts before installation. Custom
-init choices map light to DIRECT and Luna roles, balanced to CONTINUITY and
-Sol workers, and deep to the Astra owner routes. QUICK uses medium and DEFAULT
-high when deep effort is xhigh; only DEEP receives xhigh. Other custom effort
-choices propagate to routes and roles at their tier, except optional
-sol-worker-high remains high. The bundled template uses medium for
-tester/mechanical. Inspect manifest.local.json for the actual values and confirm
-all resulting model/effort pairs, including xhigh and Sol high, are supported.
+init choices map light to DIRECT and Luna roles, balanced to DEFAULT
+at high effort, CONTINUITY at the chosen balanced effort, and Sol workers.
+Deep maps to QUICK at low effort and DEEP at the chosen deep effort. Thus
+selecting deep xhigh never moves DEFAULT to the frontier model or changes its
+high effort. Optional sol-worker-high remains high. The bundled template uses
+medium for tester/mechanical. Inspect manifest.local.json for the actual values
+and confirm every resulting model/effort pair is supported, especially balanced
+high for DEFAULT and any deep xhigh choice. DEFAULT's Sol high is a conservative
+daily choice, not a proven optimum; official starting efforts are Sol medium,
+Luna high, and Astra low. Astra medium or xhigh may be chosen manually for a
+specific need. A difficult task may start on Astra without a failed Sol attempt.
 Existing manifest.local.json choices are never overwritten by init or silently
 merged from a new public template. Compare and edit local choices deliberately.
 The new public manifest retires the previous implementer agent file only when

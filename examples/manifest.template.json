@@ -4,18 +4,18 @@
   "profiles": {},
   "routing": {
     "DEFAULT": {
-      "model": "gpt-6-astra",
+      "model": "gpt-6-sol",
       "model_reasoning_effort": "high",
       "service_tier": "default"
     },
     "QUICK": {
       "model": "gpt-6-astra",
-      "model_reasoning_effort": "medium",
+      "model_reasoning_effort": "low",
       "service_tier": "default"
     },
     "DEEP": {
       "model": "gpt-6-astra",
-      "model_reasoning_effort": "xhigh",
+      "model_reasoning_effort": "high",
       "service_tier": "default"
     },
     "DIRECT": {

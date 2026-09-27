@@ -8,8 +8,9 @@
 
 Codex Economy is an installable toolkit for people who use Codex but don't know
 when to delegate bounded work, when to spend more reasoning, or when to run a
-task directly on a smaller model. An Astra owner can retain task-level judgment
-while Luna or Sol workers handle well-defined pieces. Hand this repository to Codex: it inspects your setup,
+task directly on a smaller model. A Sol owner can handle everyday work, while
+Luna or Sol workers take well-defined pieces when delegation helps. Hand this
+repository to Codex: it inspects your setup,
 adapts the presets, installs them, and verifies the result.
 
 ## Give this to Codex
@@ -32,24 +33,26 @@ home directory. No API key, background service, or Python dependencies required.
 
 | Your task | Starting profile | Why |
 | --- | --- | --- |
-| Open-ended feature or investigation with independent bounded pieces | **DEFAULT** | Astra high owns decisions and delegates suitable work |
-| Lighter work that still benefits from an Astra owner | **QUICK** | Astra medium retains task-level judgment |
+| Everyday agentic work, including open-ended features | **DEFAULT** | Sol high owns the task at Standard speed |
+| Brief work needing stronger task-level judgment | **QUICK** | Astra low |
 | Fully bounded, verifiable task | **DIRECT** | Luna high can finish the whole task |
 | Known-scope complex work or valuable Sol context | **CONTINUITY** | Sol medium can own the task |
-| Specific need for more reasoning or demonstrated benefit | **DEEP** | Astra xhigh is opt-in |
+| Difficult or ambiguous decisions or diagnosis | **DEEP** | Astra high; choose it directly when warranted |
 
-The bundled example uses Astra high as the ordinary owner, with Luna roles for
-bounded work and Sol medium for complex implementation. These are starting hypotheses, **not a universal
-ranking or a savings guarantee**. Your Codex adapts the model IDs and supported
-efforts to what your account actually offers.
-DEEP xhigh is only usable when the selected model and account support it;
-otherwise choose a supported effort in the local manifest.
+The bundled example uses Sol high as the ordinary owner, with Luna roles for
+bounded work and Sol medium for complex implementation. This is a conservative
+starting choice for accepted quality and total account usage, **not a proven
+optimum or savings guarantee**. Official starting efforts are Sol medium, Luna
+high, and Astra low; DEFAULT deliberately uses Sol high. Adapt model IDs and
+efforts to what your account actually offers. Astra medium or xhigh are manual
+options when a specific task warrants them; DEEP does not require a failed
+cheaper attempt. Confirm support before using an optional effort.
 
 The installed policy also asks Codex to keep delegation bounded, avoid filling
 agent slots by habit, preserve useful context, and count retries and review as
 part of the cost. It can recommend the right profile for the next task; it
-cannot silently switch the model running the current turn. Sol high and Astra
-xhigh need a concrete reason; neither is the ordinary default.
+cannot silently switch the model running the current turn. Manual Astra
+medium or xhigh needs a concrete reason.
 
 ## What's inside?
 

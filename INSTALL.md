@@ -39,13 +39,16 @@ python economy.py self-test
 ## 2. Adapt to the account
 
 Choose a light model for direct bounded work and Luna roles, a balanced model
-for Sol continuity and workers, and a frontier model for owner decisions. They
-may be the same model at different supported effort levels if that fits the
-available account. Avoid maximal reasoning and premium speed by default.
+for Sol DEFAULT, continuity and workers, and a frontier model for brief or
+difficult decisions. The tiers may use the same model at different supported
+efforts if that fits the available account. Avoid maximal reasoning and premium speed by default.
 
-Bundled examples: DEFAULT = Astra high, QUICK = Astra medium,
-DEEP = Astra xhigh (opt-in), DIRECT = Luna high, CONTINUITY = Sol medium.
-These are presets to evaluate, not a guaranteed optimum.
+Bundled examples: DEFAULT = Sol high, QUICK = Astra low,
+DEEP = Astra high, DIRECT = Luna high, CONTINUITY = Sol medium.
+All use Standard speed. Sol high for daily work is a conservative starting
+choice, not a proven optimum; official starting efforts are Sol medium, Luna
+high and Astra low. Astra medium or xhigh are manual options for a specific
+need. Choose Astra directly when warranted; no failed cheaper attempt is required.
 
 Initialize a local manifest with confirmed choices. Replace the uppercase
 placeholders with actual values; never pass placeholders literally:
@@ -55,11 +58,13 @@ python economy.py init --home ABSOLUTE_HOME --account main --light-model LIGHT_M
 ```
 
 All three model IDs must be supplied together. Light maps to DIRECT and Luna
-roles, balanced to CONTINUITY and Sol workers, and deep to the three Astra owner
-routes. With deep effort xhigh, DEFAULT remains high and QUICK medium; DEEP alone
-uses xhigh. Confirm that each model supports every resulting effort, including
-Sol high if using sol-worker-high. Review the generated local manifest, especially
-the role efforts. Init refuses an existing local file;
+roles, balanced to DEFAULT at high effort, CONTINUITY at the chosen balanced
+effort, and Sol workers. Deep maps to QUICK at low effort and DEEP at the
+chosen deep effort. Choosing deep xhigh cannot move DEFAULT to the frontier
+model or change its high effort. Confirm that each model supports every
+resulting effort, including Sol high for DEFAULT and sol-worker-high. Review
+the generated local manifest, especially the role efforts. Init refuses an
+existing local file;
 for an existing install, inspect and deliberately edit that file instead of
 deleting it or using a force overwrite. Updating the public template never
 silently replaces existing local choices; compare and merge intentionally.
