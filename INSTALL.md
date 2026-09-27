@@ -111,6 +111,18 @@ python economy.py set-defaults --account main
 python economy.py verify --account main --include-defaults
 ```
 
+## Execution guidance upgrades
+
+`policy.md` includes the evidence-driven execution contract. Ordinary sync
+updates that marked AGENTS.md block and its provenance; it does not activate a
+Goal, enable features, reset native state, or change the user's root model.
+No new manifest keys or PLAN/GOAL profiles are needed. If updating an older local
+copy, merge the desired policy guidance deliberately, then plan/sync/verify.
+Use [the execution guide](docs/EXECUTION.md) for completion criteria, stalls,
+native lifecycle limits and model handoffs. Runtime availability is separate
+from successful installation; report unsupported Goal controls without emulating
+them through external loops.
+
 ## 4. Handoff
 
 Tell the user:

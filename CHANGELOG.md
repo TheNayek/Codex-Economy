@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0 — evidence-driven execution
+
+- Add a policy-level work/check/repair cycle, completion criteria, bounded
+  strategy review and evidence-driven model escalation using existing roles.
+- Keep persistent Goals explicitly activated and native; preserve user budgets,
+  pauses, approvals and all model profiles. No loop runner or new runtime state.
+- Document ordinary work, planning and native Goals as separate from routing.
+
+
 ## 0.3.0 — community preview
 
 - Set DEFAULT to Sol high at Standard speed as a conservative everyday starting

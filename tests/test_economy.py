@@ -56,6 +56,53 @@ class EconomyTests(unittest.TestCase):
     def install(self, home, manifest=None, digest=None):
         return economy._install_home(home, manifest or self.manifest, digest or self.digest, self.policy)
 
+    def test_policy_only_upgrade_preserves_native_state_and_rolls_back(self):
+        config = 'model = "custom-root-model"\n\n[features]\ngoals = false\n\n[agents]\ncustom = true\n'
+        home = self.home(config)
+        agents = home / "AGENTS.md"
+        prefix, suffix = "Local instructions before.\n\n", "\n\nLocal instructions after.\n"
+        old_policy = "<!-- codex-economy:begin -->\nPrevious synthetic policy.\n<!-- codex-economy:end -->\n"
+        agents.write_text(prefix + old_policy + suffix, encoding="utf-8")
+        state = home / "state_5.sqlite"
+        state_bytes = b"synthetic native goal state sentinel\x00"
+        state.write_bytes(state_bytes)
+        old_hash = economy._sha256_bytes(old_policy.encode("utf-8"))
+        self.assertFalse(self._install_with_policy(home, old_policy, old_hash)["noop"])
+        baseline_agents = agents.read_bytes()
+        before = self._upgrade_preservation_snapshot(home)
+
+        plan = economy._plan_home(home, self.manifest, self.policy)
+        self.assertEqual([(item.relpath, item.action) for item in plan if item.action != "noop"], [("AGENTS.md", "update")])
+        upgraded = self._install_with_policy(home, self.policy, self.policy_sha256)
+        self.assertTrue(economy._verify_home(home, self.manifest, self.digest, self.policy,
+                                             policy_sha256=self.policy_sha256)["ok"])
+        self.assertEqual(agents.read_text(encoding="utf-8"), prefix + self.policy + suffix)
+        self.assertEqual(state.read_bytes(), state_bytes)
+        self.assertEqual(self._upgrade_preservation_snapshot(home), before)
+
+        again = economy._plan_home(home, self.manifest, self.policy)
+        self.assertTrue(all(item.action == "noop" for item in again))
+        noop_install = self._install_with_policy(home, self.policy, self.policy_sha256)
+        self.assertTrue(noop_install["noop"])
+        self.assertEqual(self._upgrade_preservation_snapshot(home), before)
+
+        economy._rollback_home(home, self.digest, upgraded["transaction"])
+        self.assertEqual(agents.read_bytes(), baseline_agents)
+        self.assertEqual(state.read_bytes(), state_bytes)
+        self.assertEqual(self._upgrade_preservation_snapshot(home), before)
+
+    def _install_with_policy(self, home, policy, policy_sha256):
+        return economy._install_home(home, self.manifest, self.digest, policy,
+                                     policy_sha256=policy_sha256)
+
+    def _upgrade_preservation_snapshot(self, home):
+        return {
+            path.relative_to(home).as_posix(): path.read_bytes()
+            for path in home.rglob("*")
+            if path.is_file() and path.name != "AGENTS.md"
+            and economy.BACKUP_DIR_NAME not in path.relative_to(home).parts
+        }
+
     def test_literal_secret_diagnostics_and_mutation_are_redacted_and_unbacked(self):
         marker = "SYNTHETIC-DO-NOT-PRINT-91f7"
         config = (

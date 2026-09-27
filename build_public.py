@@ -23,6 +23,7 @@ PUBLIC_FILES = (
     'examples/manifest.template.json', 'examples/policy.template.md',
     'examples/measurement.csv', 'examples/delegation-brief.md',
     'docs/COMPATIBILITY.md', 'docs/MEASURING.md', 'docs/RELEASING.md',
+    'docs/EXECUTION.md',
     '.github/workflows/ci.yml', '.github/PULL_REQUEST_TEMPLATE.md',
     '.github/ISSUE_TEMPLATE/bug_report.md',
     '.github/ISSUE_TEMPLATE/workflow_evidence.md',

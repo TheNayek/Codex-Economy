@@ -60,3 +60,11 @@ Official references checked on 2026-09-25:
 [subagents](https://learn.chatgpt.com/docs/agent-configuration/subagents).
 
 No controlled savings benchmark is included. See [the protocol](MEASURING.md).
+
+## Native execution and Goals
+
+The execution guidance in policy.md is installed by ordinary plan/sync/verify;
+no manifest migration or feature flag change is needed. Keep a user's disabled
+Goals setting disabled. Actual `/goal`, `/plan`, model selection and lifecycle
+support depend on the active client/tool contract; ordinary work/check/repair
+still applies when persistent Goals are unavailable. See [execution](EXECUTION.md).

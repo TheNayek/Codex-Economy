@@ -141,3 +141,14 @@ This starts a real Codex task and consumes quota. To test delegation, add
 `--roles explorer,tester --fork-turns none` and choose an appropriate owner
 profile. Use a disposable workspace. It validates routing and completion, not
 relative quality or savings. A timeout may leave children to inspect in Codex.
+
+## Measure an iterative task
+
+For work governed by the [execution policy](EXECUTION.md), keep a compact note
+of the acceptance check, meaningful progress, failed hypotheses and reason for
+any model escalation. Use the chat or an existing task document. Include owner,
+children, review and all retries; do not reset the measured task when changing
+model or entering a new turn. Record unavailable checks and baseline failures.
+Compare accepted outcomes under equivalent checks, not just loop counts or
+native completion status. A Goal token budget is not a quota prediction, and
+policy regression tests do not measure model behavior or savings.

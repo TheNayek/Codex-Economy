@@ -54,6 +54,18 @@ part of the cost. It can recommend the right profile for the next task; it
 cannot silently switch the model running the current turn. Manual Astra
 medium or xhigh needs a concrete reason.
 
+## Work through completion
+
+Model profiles and execution style are separate. Ordinary tasks receive relevant
+checks and in-scope corrections; plan first when needed, or explicitly activate
+native `/goal` for a persistent objective across turns. `DIRECT` remains a model
+profile, not a promise of one-pass work. No new PLAN/GOAL profiles are installed.
+
+The installed policy defines evidence-based completion, strategy changes after
+unproductive attempts, and bounded model escalation when the evidence warrants
+it. Goal lifecycle, budgets and pauses remain native; runtime permissions and
+existing model choices are preserved. [Execution guide](docs/EXECUTION.md).
+
 ## What's inside?
 
 - **Native profiles and roles:** regular Codex configuration, no external router.

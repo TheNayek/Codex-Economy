@@ -52,6 +52,19 @@ recomendar un perfil para la siguiente tarea; no cambia en secreto el modelo
 que ya está ejecutando el turno actual. Astra medium o xhigh usados
 manualmente requieren un motivo concreto.
 
+## Llevar el trabajo hasta un resultado verificado
+
+Los perfiles de modelo y la forma de ejecutar son decisiones separadas. Las
+peticiones normales incluyen comprobación y corrección dentro del alcance;
+planifica cuando sea útil y activa `/goal` explícitamente si necesitas mantener
+un objetivo entre turnos. DIRECT sigue siendo un perfil de modelo, no una
+obligación de terminar en una sola pasada. No se añaden perfiles PLAN/GOAL.
+
+La política exige evidencia para cerrar, revisar la estrategia cuando no hay
+progreso y escalar recursos solo con motivos concretos. Codex conserva el estado,
+los presupuestos y las pausas del Goal; Economy conserva permisos y elecciones
+existentes. [Guía de ejecución](docs/EXECUTION.md).
+
 ## Una idea de la diferencia potencial
 
 Para un **ejemplo de consumo idéntico** de 20.000 tokens de entrada sin caché,
